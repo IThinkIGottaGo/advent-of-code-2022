@@ -74,9 +74,9 @@ object Rock : Shape {
 
     override fun match(shape: Shape): MatchResult =
         when (shape) {
-            Rock -> DRAW
-            Paper -> LOSE
-            Scissors -> WIN
+            Rock -> Draw
+            Paper -> Lose
+            Scissors -> Win
         }
 
     override fun winChoose(): Shape = Paper
@@ -89,9 +89,9 @@ object Paper : Shape {
 
     override fun match(shape: Shape): MatchResult =
         when (shape) {
-            Rock -> WIN
-            Paper -> DRAW
-            Scissors -> LOSE
+            Rock -> Win
+            Paper -> Draw
+            Scissors -> Lose
         }
 
     override fun winChoose(): Shape = Scissors
@@ -105,9 +105,9 @@ object Scissors : Shape {
 
     override fun match(shape: Shape): MatchResult =
         when (shape) {
-            Rock -> LOSE
-            Paper -> WIN
-            Scissors -> DRAW
+            Rock -> Lose
+            Paper -> Win
+            Scissors -> Draw
         }
 
     override fun winChoose(): Shape = Rock
@@ -123,23 +123,22 @@ sealed class MatchResult(val matchScore: Int) {
         @JvmStatic
         fun resolve(strategy: String): MatchResult =
             when (strategy) {
-                "X" -> LOSE
-                "Y" -> DRAW
-                "Z" -> WIN
+                "X" -> Lose
+                "Y" -> Draw
+                "Z" -> Win
                 else -> error("Unknown strategy.")
             }
     }
 }
 
-object WIN : MatchResult(6) {
+object Win : MatchResult(6) {
     override fun counterChoose(elvesShape: Shape): Shape = elvesShape.winChoose()
 }
 
-object LOSE : MatchResult(0) {
+object Lose : MatchResult(0) {
     override fun counterChoose(elvesShape: Shape): Shape = elvesShape.loseChoose()
-
 }
 
-object DRAW : MatchResult(3) {
+object Draw : MatchResult(3) {
     override fun counterChoose(elvesShape: Shape): Shape = elvesShape.drawChoose()
 }
