@@ -8,15 +8,20 @@ import readInput
 fun main() {
     fun part1(input: List<String>): Int {
         val sharedItems = input.map {
-            val first = it.substring(0 until it.length / 2).toSet()
-            val second = it.substring(it.length / 2).toSet()
+            val first = it.substring(0 until it.length / 2)
+            val second = it.substring(it.length / 2)
             (first intersect second).single()
         }
         return sharedItems.sumOf { it.priority }
     }
 
     fun part2(input: List<String>): Int {
-        return input.size
+        val keycards = input.chunked(3) {
+            val (a, b, c) = it
+            val keycard = a intersect b intersect c
+            keycard.single()
+        }
+        return keycards.sumOf { it.priority }
     }
 
     val testInput = readInput("day03_test")
@@ -30,9 +35,14 @@ fun main() {
 
 val Char.priority
     get(): Int {
-        return if (isLowerCase()) {
-            this - 'a' + 1
-        } else {
-            this - 'A' + 27
+        return when (this) {
+            in 'a'..'z' -> this - 'a' + 1
+            in 'A'..'Z' -> this - 'A' + 27
+            else -> error("Check your input! $this")
         }
     }
+
+// or, for fewer manual call to `.toSet`:
+infix fun String.intersect(other: String) = toSet() intersect other.toSet()
+
+infix fun Set<Char>.intersect(other: String) = this intersect other.toSet()
