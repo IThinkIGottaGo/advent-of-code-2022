@@ -37,6 +37,10 @@ inline fun <T, K, V, G> Iterable<T>.groupBySkipNullKey(
     return destination
 }
 
+inline fun <T> MutableList<T>.getOrAdd(index: Int, defaultValue: () -> T): T {
+    return this.getOrNull(index) ?: defaultValue().also { add(it) }
+}
+
 private fun getDirectCaller(): Class<*> =
     StackWalker.getInstance(Option.RETAIN_CLASS_REFERENCE)
         .walk { stream ->
