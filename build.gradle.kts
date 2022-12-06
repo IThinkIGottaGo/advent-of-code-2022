@@ -22,4 +22,10 @@ tasks {
             jvmTarget = "17"
         }
     }
+
+    compileTestKotlin {
+        kotlinOptions {
+            jvmTarget = "17"
+        }
+    }
 }

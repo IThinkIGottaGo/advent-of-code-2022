@@ -33,7 +33,6 @@ fun processStackString(stackString: String): MutableList<ArrayDeque<Char>> {
     val stackList = mutableListOf<ArrayDeque<Char>>()
     val indexPart = stackString.lines().last()
     val stackPart = stackString.lines().dropLast(1)
-    // this can not handle stack size >9 case
     indexPart.forEachIndexed { i, c ->
         if (c.isDigit()) {
             stackPart.forEach { crates ->
