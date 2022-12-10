@@ -20,7 +20,7 @@ If you're stuck with Kotlin-specific questions or anything related to this templ
 |  day06  |    ✅      |  day15  |          |  day24  |          |
 |  day07  |    ✅      |  day16  |          |  day25  |          |
 |  day08  |    ✅      |  day17  |          |         |          |
-|  day09  |          |  day18  |          |         |          |
+|  day09  |    ✅      |  day18  |          |         |          |
 
 [^aoc]:
     [Advent of Code][aoc] – An annual event of Christmas-oriented programming challenges started December 2015.

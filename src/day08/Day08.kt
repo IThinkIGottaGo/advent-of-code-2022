@@ -75,7 +75,6 @@ fun List<String>.rightVisible(cx: Int, cy: Int): Boolean {
 fun List<String>.totalScenicScore(x: Int, y: Int): Int =
     topScenicScore(x, y) * bottomScenicScore(x, y) * leftScenicScore(x, y) * rightScenicScore(x, y)
 
-
 fun List<String>.topScenicScore(cx: Int, cy: Int): Int {
     var y = cy
     var score = 0
