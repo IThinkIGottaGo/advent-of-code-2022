@@ -38,7 +38,11 @@ inline fun <T, K, V, G> Iterable<T>.groupBySkipNullKey(
 }
 
 inline fun <T> MutableList<T>.getOrAdd(index: Int, defaultValue: () -> T): T {
-    return this.getOrNull(index) ?: defaultValue().also { add(it) }
+    return this.getOrNull(index) ?: defaultValue().also { add(index, it) }
+}
+
+fun <T> MutableList<T>.addOrSet(index: Int, value: T): T {
+    return getOrNull(index)?.let { set(index, value) } ?: add(index, value).let { value }
 }
 
 private fun getDirectCaller(): Class<*> =
